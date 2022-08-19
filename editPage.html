@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+    <div class="d-flex container-fluid">
+        <div class="container shadow mt-5 p-5 col-lg-6 col-sm-12 col-md-6">
+            <div class="row">
+                <h1 class="text-center text-secondary">Edit User</h1>
+                <b id="message" class="alert text-center alert-warning"></b>
+                <div class="form-floating">
+                    <input type="text" placeholder="firstname" class="form-control mb-3" id="firstName">
+                    <label for="">firstname</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" placeholder="lastname" class="form-control mb-3" id="lastName">
+                    <label for="">lastname</label>
+                </div>
+                <div class="form-floating">
+                    <input type="email" placeholder="email" class="form-control mb-3" id="email">
+                    <label for="">email</label>
+                </div>
+                <button class="btn btn-outline-primary" onclick="editUser()">Update User</button>
+            </div>
+        </div>
+        
+        <script>
+            if (localStorage.index) {
+                var user =JSON.parse(localStorage.getItem("userDetails"));
+                var userInd =JSON.parse(localStorage.getItem("index"));
+                var obj = user[userInd]
+                firstName.value = user[userInd].firstName
+                lastName.value = user[userInd].lastName
+                email.value = user[userInd].email
+
+            } else {
+                window.location.href="userDetails.html"
+            }
+            const editUser =()=> {
+                var update = {
+                    firstName: firstName.value,
+                    lastName: lastName.value,
+                    email: email.value,
+                    password: user[userInd].password
+                }
+                user[userInd] = update
+                localStorage.setItem("userDetails",JSON.stringify(user))
+                window.location.href="userDetails.html"
+                localStorage.removeItem("index")
+            }
+        </script>
+</body>
+</html>
